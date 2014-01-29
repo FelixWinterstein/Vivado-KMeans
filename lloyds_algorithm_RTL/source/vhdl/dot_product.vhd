@@ -170,68 +170,6 @@ begin
     
     end generate G1; 
     
---    -- FIXME: this will not work if D is not power of 2
---    G2: for I in 0 to LAYERS_TREE_ADDER-1 generate
---        
---        G_TOP_LAYER: if I = 0 generate 
---            G2_2: for J in 0 to (D/(2**(I+1)))-1 generate
---                             
---                addorsub_inst_2 : addorsub
---                    generic map (
---                        A_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1,
---                        B_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1,        
---                        RES_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1+LAYERS_TREE_ADDER
---                    )
---                    port map (
---                        clk => clk,
---                        sclr => sclr,
---                        nd => '1',
---                        sub => '0',
---                        a => tmp_mul_res(2*J),
---                        b => tmp_mul_res(2*J+1),
---                        res => tmp_tree_adder_res(I,J),
---                        rdy => open
---                    );
---            end generate G2_2;
---            
---        end generate G_TOP_LAYER;
---        
---        G_OTHER_LAYER: if I > 0 generate 
---            G2_2: for J in 0 to (D/(2**(I+1)))-1 generate                        
---                addorsub_inst_2 : addorsub
---                    generic map (
---                        A_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1+LAYERS_TREE_ADDER,
---                        B_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1+LAYERS_TREE_ADDER,        
---                        RES_BITWIDTH => 2*MUL_BITWIDTH-SCALE_MUL_RESULT+1+LAYERS_TREE_ADDER
---                    )
---                    port map (
---                        clk => clk,
---                        sclr => sclr,
---                        nd => '1',
---                        sub => '0',
---                        a => tmp_tree_adder_res(I-1,2*J),
---                        b => tmp_tree_adder_res(I-1,2*J+1),
---                        res => tmp_tree_adder_res(I,J),
---                        rdy => open
---                    );
---            end generate G2_2;
---        end generate G_OTHER_LAYER;
---        
---    end generate G2;
---      
---    -- compensate for latency
---    delay_line_proc : process(clk)
---    begin
---    if rising_edge(clk) then
---        if sclr = '1' then
---            delay_line_tree_adder <= (others => '0');
---        else
---            delay_line_tree_adder(0) <= tmp_mul_rdy;
---            delay_line_tree_adder(1 to 2*LAYERS_TREE_ADDER-1) <= delay_line_tree_adder(0 to 2*LAYERS_TREE_ADDER-2);
---        end if;
---    end if;
---    end process delay_line_proc;
---    
 
     G2 : for I in 0 to D-1 generate
         tmp_tree_adder_input_string((I+1)*(2*MUL_BITWIDTH-SCALE_MUL_RESULT+1)-1 downto I*(2*MUL_BITWIDTH-SCALE_MUL_RESULT+1)) <= tmp_mul_res(I);
