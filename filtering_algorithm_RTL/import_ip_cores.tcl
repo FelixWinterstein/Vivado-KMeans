@@ -1,0 +1,15 @@
+import_ip -file source/ip/centre_buffer_dist.xci -name centre_buffer_dist
+import_ip -file source/ip/centre_index_fifo.xci -name centre_index_fifo
+import_ip -file source/ip/centre_index_memory.xci -name centre_index_memory
+import_ip -file source/ip/centre_index_trace_memory.xci -name centre_index_trace_memory
+import_ip -file source/ip/centre_positions_fifo.xci -name centre_positions_fifo
+import_ip -file source/ip/centre_positions_memory.xci -name centre_positions_memory
+import_ip -file source/ip/centre_stack_memory.xci -name centre_stack_memory
+import_ip -file source/ip/ctrl_fifo_u.xci -name ctrl_fifo_u
+import_ip -file source/ip/ctrl_fifo.xci -name ctrl_fifo
+import_ip -file source/ip/divider.xci -name divider
+import_ip -file source/ip/free_list_memory.xci -name free_list_memory
+import_ip -file source/ip/int_node_memory.xci -name int_node_memory
+import_ip -file source/ip/leaf_node_memory.xci -name leaf_node_memory
+import_ip -file source/ip/mul.xci -name mul
+import_ip -file source/ip/node_stack_memory.xci -name node_stack_memory
