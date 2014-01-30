@@ -29,10 +29,10 @@ void lloyds_algorithm_top(	volatile data_type *data,
 	// set the interface properties
 	#pragma HLS interface ap_none register port=n
 	#pragma HLS interface ap_none register port=k
-	#pragma HLS interface ap_fifo port=data
-	#pragma HLS interface ap_fifo port=cntr_pos_init
-	#pragma HLS interface ap_fifo port=distortion_out
-	#pragma HLS interface ap_fifo port=clusters_out
+	#pragma HLS interface ap_fifo port=data depth=16
+	#pragma HLS interface ap_fifo port=cntr_pos_init depth=16
+	#pragma HLS interface ap_fifo port=distortion_out depth=16
+	#pragma HLS interface ap_fifo port=clusters_out depth=16
 
 	// pack all items of a struct into a single data word
 	#pragma HLS data_pack variable=data // pack struct data_type

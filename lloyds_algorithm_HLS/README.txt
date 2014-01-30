@@ -25,9 +25,9 @@ If you want to create a Vivado HLS project using these sources you may find the 
 Synthesizing RTL code:
 A VHDL testbench is provided in 'rtl/simulation/testbench.vhd' which can be used to run an RTL simulation of the generated VHDL code:
 1) Run synthesis in Vivado HLS
-2) Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<project name>/<solution name>/impl'.
+2) Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<HLS project name>/<solution name>/impl'.
 3) Change to the folder 'rtl/source' and run the linux shell script 'reload_source_files.sh'.
-   The script copies all *.vhd files from 'lloyds_algorithm/solution1/impl/vhdl' into the folder 'rtl/source'.
+   The script copies all *.vhd files from 'lloyds_algorithm/solution1/impl/vhdl' into the folder 'rtl/source' (where 'lloyds_algorithm/solution1' is '<HLS project name>/<solution name>').
    It also generates a TCL-script 'update_fileset.tcl' in the same folder in order to load the *.vhd files into a Vivado RTL project.
 4) Launch Vivado (RTL flow) and create a new project.
 5) Add the HDL sources in 'rtl/source/'.
