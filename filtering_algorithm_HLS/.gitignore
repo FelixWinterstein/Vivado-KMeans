@@ -1,0 +1,10 @@
+.apc
+.cproject
+.project
+.settings
+*.jou
+*.log
+.vivado_hls_log.xml
+.autopilot
+Debug
+Launch
