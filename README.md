@@ -13,3 +13,4 @@ In addition to C-based HLS designs, we include hand-written and -optimised VHDL 
 
 Probably the best way to understand what this is all about is to read my papers included in this repository.
 
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fdd004cf9c26b71e20a5809a77718c8c "githalytics.com")](http://githalytics.com/FelixWinterstein/Vivado-KMeans)
