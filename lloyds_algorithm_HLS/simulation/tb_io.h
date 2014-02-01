@@ -9,7 +9,7 @@
 **********************************************************************/
 
 #ifndef TB_IO_H
-#define	TB_IO_H
+#define TB_IO_H
 
 #include <math.h>
 #include "../source/lloyds_algorithm_util.h"

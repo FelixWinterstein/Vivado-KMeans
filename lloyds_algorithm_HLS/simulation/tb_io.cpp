@@ -37,8 +37,8 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
     fp=fopen(filename, "r");
 
     if (fp == 0) {
-    	printf("failed to open file\n");
-    	return false;
+        printf("failed to open file\n");
+        return false;
     }
     char tmp[16];
 
@@ -49,10 +49,10 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
                 return false;
             } else {
                 //printf("%s\n",tmp);
-            	//points[i].value[j]=(mytype)atoi(tmp); // assume coord_type==short int
-            	coord_type b;
-            	b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
-            	set_coord_type_vector_item(&points[i].value, b, j);
+                //points[i].value[j]=(mytype)atoi(tmp); // assume coord_type==short int
+                coord_type b;
+                b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
+                set_coord_type_vector_item(&points[i].value, b, j);
             }
         }
     }
@@ -74,8 +74,8 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
     make_initial_centres_file_name(filename,n,k,D,std_dev,FILE_INDEX);
     fp=fopen(filename, "r");
     if (fp == 0) {
-    	printf("failed to open file\n");
-    	return false;
+        printf("failed to open file\n");
+        return false;
     }
     char tmp[16];
 
@@ -86,10 +86,10 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
                 return false;
             } else {
                 //printf("%s\n",tmp);
-            	//initial_centre_positions[i].value[j] = (mytype)atoi(tmp); // assume coord_type==short int
-            	coord_type b;
-            	b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
-            	set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
+                //initial_centre_positions[i].value[j] = (mytype)atoi(tmp); // assume coord_type==short int
+                coord_type b;
+                b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
+                set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
             }
         }
     }
@@ -107,27 +107,27 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
 
 void print_data_type_array(data_type *c, centre_index_type k)
 {
-	for (centre_index_type i=0; i<=k; i++) {
-		for (uint d=0; d<D-1; d++) {
-			coord_type tmp = get_coord_type_vector_item(c[i].value,d);
-			printf("%d ",tmp.VAL);
-		}
-		coord_type_ext tmp = get_coord_type_vector_item(c[i].value,D-1);
-		printf("%d\n",tmp.VAL);
-	}
+    for (centre_index_type i=0; i<=k; i++) {
+        for (uint d=0; d<D-1; d++) {
+            coord_type tmp = get_coord_type_vector_item(c[i].value,d);
+            printf("%d ",tmp.VAL);
+        }
+        coord_type_ext tmp = get_coord_type_vector_item(c[i].value,D-1);
+        printf("%d\n",tmp.VAL);
+    }
 }
 
 
 void print_centre_array(centre_type *c, centre_index_type k)
 {
-	for (centre_index_type i=0; i<=k; i++) {
-		for (uint d=0; d<D-1; d++) {
-			coord_type_ext tmp = get_coord_type_vector_ext_item(c[i].wgtCent.value,d);
-			printf("%d ",tmp.VAL);
-		}
-		coord_type_ext tmp = get_coord_type_vector_ext_item(c[i].wgtCent.value,D-1);
-		printf("%d\n",tmp.VAL);
-	}
+    for (centre_index_type i=0; i<=k; i++) {
+        for (uint d=0; d<D-1; d++) {
+            coord_type_ext tmp = get_coord_type_vector_ext_item(c[i].wgtCent.value,d);
+            printf("%d ",tmp.VAL);
+        }
+        coord_type_ext tmp = get_coord_type_vector_ext_item(c[i].wgtCent.value,D-1);
+        printf("%d\n",tmp.VAL);
+    }
 }
 
 

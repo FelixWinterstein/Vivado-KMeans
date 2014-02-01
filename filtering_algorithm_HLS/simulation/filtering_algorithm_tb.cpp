@@ -27,42 +27,42 @@ uint cntr_indices[K];
 
 // recursively split the kd-tree into P sub-trees (P is parallelism degree)
 void recursive_split(uint p,
-					uint n,
-					data_type bnd_lo,
-					data_type bnd_hi,
-					uint *idx,
-					data_type *data_points,
-					uint *i,
-					uint *ofs,
-					node_pointer *root,
-					kdTree_type *tree_image,
-					node_pointer *tree_image_addr,
-					uint n0,
-					uint k,
-					double std_dev)
+                    uint n,
+                    data_type bnd_lo,
+                    data_type bnd_hi,
+                    uint *idx,
+                    data_type *data_points,
+                    uint *i,
+                    uint *ofs,
+                    node_pointer *root,
+                    kdTree_type *tree_image,
+                    node_pointer *tree_image_addr,
+                    uint n0,
+                    uint k,
+                    double std_dev)
 {
-	if (p==P) {
-		printf("Sub-tree %d: %d data points\n",*i,n);
-	    node_pointer rt = buildkdTree(data_points, idx, n, &bnd_lo, &bnd_hi, *i*HEAP_SIZE/2/P);
-	    root[*i] = rt;
-	    uint offset = *ofs;
-	    readout_tree(true, n0, k, std_dev, rt, offset, tree_image, tree_image_addr);
-		*i = *i + 1;
-		*ofs = *ofs + 2*n-1;
-	} else {
-		uint cdim;
-		coord_type cval;
-		uint n_lo;
-		split_bounding_box(data_points, idx, n, &bnd_lo, &bnd_hi, &n_lo, &cdim, &cval);
-		// update bounding box
-		data_type new_bnd_hi = bnd_hi;
-		data_type new_bnd_lo = bnd_lo;
-		set_coord_type_vector_item(&new_bnd_hi.value,cval,cdim);
-		set_coord_type_vector_item(&new_bnd_lo.value,cval,cdim);
+    if (p==P) {
+        printf("Sub-tree %d: %d data points\n",*i,n);
+        node_pointer rt = buildkdTree(data_points, idx, n, &bnd_lo, &bnd_hi, *i*HEAP_SIZE/2/P);
+        root[*i] = rt;
+        uint offset = *ofs;
+        readout_tree(true, n0, k, std_dev, rt, offset, tree_image, tree_image_addr);
+        *i = *i + 1;
+        *ofs = *ofs + 2*n-1;
+    } else {
+        uint cdim;
+        coord_type cval;
+        uint n_lo;
+        split_bounding_box(data_points, idx, n, &bnd_lo, &bnd_hi, &n_lo, &cdim, &cval);
+        // update bounding box
+        data_type new_bnd_hi = bnd_hi;
+        data_type new_bnd_lo = bnd_lo;
+        set_coord_type_vector_item(&new_bnd_hi.value,cval,cdim);
+        set_coord_type_vector_item(&new_bnd_lo.value,cval,cdim);
 
-		recursive_split(p*2, n_lo, bnd_lo, new_bnd_hi, idx, data_points,i,ofs,root,tree_image,tree_image_addr,n0,k,std_dev);
-		recursive_split(p*2, n-n_lo, new_bnd_lo, bnd_hi, idx+n_lo, data_points,i,ofs,root,tree_image,tree_image_addr,n0,k,std_dev);
-	}
+        recursive_split(p*2, n_lo, bnd_lo, new_bnd_hi, idx, data_points,i,ofs,root,tree_image,tree_image_addr,n0,k,std_dev);
+        recursive_split(p*2, n-n_lo, new_bnd_lo, bnd_hi, idx+n_lo, data_points,i,ofs,root,tree_image,tree_image_addr,n0,k,std_dev);
+    }
 
 }
 
@@ -71,11 +71,11 @@ void recursive_split(uint p,
 int main()
 {
 
-	const uint n = 128; // 16384
-	const uint k = 4;	// 128
-	const double std_dev = 0.75; //0.20
+    const uint n = 128; // 16384
+    const uint k = 4;   // 128
+    const double std_dev = 0.75; //0.20
 
-	// read data points from file
+    // read data points from file
     if (read_data_points(n,k,std_dev,data_points,idx) == false)
         return 1;
 
@@ -88,7 +88,7 @@ int main()
     for (uint i=0; i<k; i++) {
         printf("%d: ",i);
         for (uint d=0; d<D-1; d++) {
-        	printf("%d ",get_coord_type_vector_item(initial_centre_positions[i].value, d).to_int());
+            printf("%d ",get_coord_type_vector_item(initial_centre_positions[i].value, d).to_int());
         }
         printf("%d\n",get_coord_type_vector_item(initial_centre_positions[i].value, D-1).to_int());
     }
@@ -114,10 +114,10 @@ int main()
     for (uint i=0; i<k; i++) {
         printf("%d: ",i);
         for (uint d=0; d<D-1; d++) {
-        	printf("%d ",get_coord_type_vector_item(clusters_out[i].value, d).to_int());
+            printf("%d ",get_coord_type_vector_item(clusters_out[i].value, d).to_int());
         }
         printf("%d\n",get_coord_type_vector_item(clusters_out[i].value, D-1).to_int());
     }
 
-	return 0;
+    return 0;
 }

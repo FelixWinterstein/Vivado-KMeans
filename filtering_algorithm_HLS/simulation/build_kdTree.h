@@ -10,7 +10,7 @@
 
 
 #ifndef BUILD_KDTREE_H
-#define	BUILD_KDTREE_H
+#define BUILD_KDTREE_H
 
 #include "../source/filtering_algorithm_util.h"
 #include "../source/stack.h"
@@ -39,4 +39,4 @@ void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer 
                                     *(indx+i1) = *(indx+i2);\
                                     *(indx+i2) = tmp; }
 
-#endif	/* BUILD_KDTREE_H */
+#endif  /* BUILD_KDTREE_H */

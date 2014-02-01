@@ -10,21 +10,21 @@
 
 
 #ifndef LLOYDS_ALGORITHM_TOP_H
-#define	LLOYDS_ALGORITHM_TOP_H
+#define LLOYDS_ALGORITHM_TOP_H
 
 #include <math.h>
 #include "ap_int.h" // custom data types
 
-#define D 3     	// data dimensionality
-#define N 32768   	// max. number of data points
-#define K 256    	// max. number of centres
-#define L 6   		// max. number of iterations
-#define P 40		// parallelisation degree
+#define D 3         // data dimensionality
+#define N 32768     // max. number of data points
+#define K 256       // max. number of centres
+#define L 6         // max. number of iterations
+#define P 40        // parallelisation degree
 
 #define COORD_BITWIDTH 16
 #define COORD_BITWITDH_EXT 32
-#define NODE_POINTER_BITWIDTH 15 	// log2(N)
-#define CNTR_INDEX_BITWIDTH 8 		// log2(K)
+#define NODE_POINTER_BITWIDTH 15    // log2(N)
+#define CNTR_INDEX_BITWIDTH 8       // log2(K)
 
 // pointer types to tree nodes and centre lists
 typedef ap_uint<NODE_POINTER_BITWIDTH> node_pointer;
@@ -53,8 +53,8 @@ typedef ap_int<MUL_INTEGER_BITS+MUL_FRACTIONAL_BITS> mul_input_type;
 
 // data point types
 struct data_type {
-	//coord_type value[D];
-	coord_type_vector value;
+    //coord_type value[D];
+    coord_type_vector value;
     data_type& operator=(const data_type& a);
     data_type& operator=(const volatile data_type& a);
 };
@@ -62,7 +62,7 @@ struct data_type {
 
 // data point types ext
 struct data_type_ext {
-	coord_type_vector_ext value;
+    coord_type_vector_ext value;
     data_type_ext& operator=(const data_type_ext& a);
 };
 
@@ -80,33 +80,33 @@ typedef centre_type* centre_ptr;
 #ifdef FORCE_REGISTERS
 template<class T>
 T Reg(T in) {
-	#pragma HLS INLINE off
-	#pragma HLS INTERFACE port=return register
-	return in;
+    #pragma HLS INLINE off
+    #pragma HLS INTERFACE port=return register
+    return in;
 }
 #else
 template<class T>
 T Reg(T in) {
-	#pragma HLS INLINE
-	return in;
+    #pragma HLS INLINE
+    return in;
 }
 #endif
 
 
 
-void lloyds_algorithm_top(	volatile data_type *data,
-							volatile data_type *cntr_pos_init,
-							node_pointer n,
-							centre_index_type k,
-							volatile coord_type_ext *distortion_out,
-							volatile data_type *clusters_out);
+void lloyds_algorithm_top(  volatile data_type *data,
+                            volatile data_type *cntr_pos_init,
+                            node_pointer n,
+                            centre_index_type k,
+                            volatile coord_type_ext *distortion_out,
+                            volatile data_type *clusters_out);
 
 void init_node_memory(volatile data_type *node_data, node_pointer n);
 
 void update_centres(centre_type *centres_in,centre_index_type k, data_type *centres_positions_out);
 
-void lloyds ( 	node_pointer n,
-				centre_index_type k,
-				centre_type *centres_out);
+void lloyds (   node_pointer n,
+                centre_index_type k,
+                centre_type *centres_out);
 
-#endif	/* LLOYDS_ALGORITHM_TOP_H */
+#endif  /* LLOYDS_ALGORITHM_TOP_H */

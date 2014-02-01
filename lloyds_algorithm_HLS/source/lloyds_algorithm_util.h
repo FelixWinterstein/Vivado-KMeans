@@ -9,7 +9,7 @@
 **********************************************************************/
 
 #ifndef LLOYDS_ALGORITHM_UTIL_H
-#define	LLOYDS_ALGORITHM_UTIL_H
+#define LLOYDS_ALGORITHM_UTIL_H
 
 #include "lloyds_algorithm_top.h"
 
@@ -30,4 +30,4 @@ coord_type_ext tree_adder(coord_type_ext *input_array,const uint m);
 void compute_distance(data_type p1, data_type p2, coord_type_ext *dist);
 
 
-#endif	/* LLOYDS_ALGORITHM_UTIL_H */
+#endif  /* LLOYDS_ALGORITHM_UTIL_H */

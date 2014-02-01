@@ -52,8 +52,8 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
     fp=fopen(filename, "r");
 
     if (fp == 0) {
-    	printf("failed to open file\n");
-    	return false;
+        printf("failed to open file\n");
+        return false;
     }
     char tmp[16];
 
@@ -64,10 +64,10 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
                 return false;
             } else {
                 //printf("%s\n",tmp);
-            	//points[i].value[j]=(mytype)atoi(tmp); // assume coord_type==short int
-            	coord_type b;
-            	b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
-            	set_coord_type_vector_item(&points[i].value, b, j);
+                //points[i].value[j]=(mytype)atoi(tmp); // assume coord_type==short int
+                coord_type b;
+                b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
+                set_coord_type_vector_item(&points[i].value, b, j);
             }
         }
     }
@@ -89,8 +89,8 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
     make_initial_centres_file_name(filename,n,k,D,std_dev,FILE_INDEX);
     fp=fopen(filename, "r");
     if (fp == 0) {
-    	printf("failed to open file\n");
-    	return false;
+        printf("failed to open file\n");
+        return false;
     }
     char tmp[16];
 
@@ -101,10 +101,10 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
                 return false;
             } else {
                 //printf("%s\n",tmp);
-            	//initial_centre_positions[i].value[j] = (mytype)atoi(tmp); // assume coord_type==short int
-            	coord_type b;
-            	b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
-            	set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
+                //initial_centre_positions[i].value[j] = (mytype)atoi(tmp); // assume coord_type==short int
+                coord_type b;
+                b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
+                set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
             }
         }
     }
@@ -202,32 +202,32 @@ void split_bounding_box(data_type* points, uint *idx, uint n, data_type *bnd_lo,
     int l = 0;
     int r = n-1;
 
-    for(;;) {				// partition points[0..n-1]
-	while (l < n && get_coord(points,idx+0,l,dim) < threshold) {
+    for(;;) {               // partition points[0..n-1]
+    while (l < n && get_coord(points,idx+0,l,dim) < threshold) {
             l++;
         }
-	while (r >= 0 && get_coord(points,idx+0,r,dim) >= threshold) {
+    while (r >= 0 && get_coord(points,idx+0,r,dim) >= threshold) {
             r--;
         }
-	if (l > r) break; // avoid this
-	coord_swap(idx+0,l,r);
-	l++; r--;
+    if (l > r) break; // avoid this
+    coord_swap(idx+0,l,r);
+    l++; r--;
     }
 
-    uint br1 = l;			// now: data_points[0..br1-1] < threshold <= data_points[br1..n-1]
+    uint br1 = l;           // now: data_points[0..br1-1] < threshold <= data_points[br1..n-1]
     r = n-1;
-    for(;;) {				// partition pa[br1..n-1] about threshold
-	while (l < n && get_coord(points,idx+0,l,dim) <= threshold) {
+    for(;;) {               // partition pa[br1..n-1] about threshold
+    while (l < n && get_coord(points,idx+0,l,dim) <= threshold) {
             l++;
         }
-	while (r >= br1 && get_coord(points,idx+0,r,dim) > threshold) {
+    while (r >= br1 && get_coord(points,idx+0,r,dim) > threshold) {
             r--;
         }
-	if (l > r) break; // avoid this
-	coord_swap(idx+0,l,r);
-	l++; r--;
+    if (l > r) break; // avoid this
+    coord_swap(idx+0,l,r);
+    l++; r--;
     }
-    uint br2 = l;			// now: points[br1..br2-1] == threshold < points[br2..n-1]
+    uint br2 = l;           // now: points[br1..br2-1] == threshold < points[br2..n-1]
     if (ideal_threshold < min) *n_lo = 0+1;
     else if (ideal_threshold > max) *n_lo = n-1;
     else if (br1 > n/2) *n_lo = br1;
@@ -244,10 +244,10 @@ void setup_tree_node(data_type* points, uint *idx, uint n, data_type bnd_lo, dat
     // compute cell mid point
     data_type tmp_mid;
     for (uint d=0;d<D;d++) {
-    	coord_type tmp1 = get_coord_type_vector_item(bnd_lo.value, d);
-    	coord_type tmp2 = get_coord_type_vector_item(bnd_hi.value, d);
-    	coord_type tmp3 = (tmp1+tmp2) / 2;
-    	set_coord_type_vector_item(&tmp_mid.value,tmp3,d);
+        coord_type tmp1 = get_coord_type_vector_item(bnd_lo.value, d);
+        coord_type tmp2 = get_coord_type_vector_item(bnd_hi.value, d);
+        coord_type tmp3 = (tmp1+tmp2) / 2;
+        set_coord_type_vector_item(&tmp_mid.value,tmp3,d);
     }
 
     // set the basic stuff (everything but the sums)
@@ -264,11 +264,11 @@ void setup_tree_node(data_type* points, uint *idx, uint n, data_type bnd_lo, dat
 // build up a kd-tree from a set of data points
 node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo, data_type *bnd_hi, node_pointer root_offset)
 {
-	uint debug_counter = 0;
-	uint debug_leaf_counter = 0;
-	uint debug_int_counter = 0;
+    uint debug_counter = 0;
+    uint debug_leaf_counter = 0;
+    uint debug_int_counter = 0;
 
-	uint dummy_pointer;
+    uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
 
     //init_allocator<node_pointer>(freelist, &next_free_location, HEAP_SIZE-1);
@@ -288,7 +288,7 @@ node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo
     uint stack_length = push_node(root, &bt_stack_pointer, bt_stack_array);
 
     while (stack_length != 0) {
-    	debug_counter++;
+        debug_counter++;
         // fetch head of stack
         node_pointer u;
         stack_length = pop_node(&u, &bt_stack_pointer, bt_stack_array);
@@ -314,22 +314,22 @@ node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo
             node_pointer left_child;
             node_pointer right_child;
             if (n_lo == 1) {
-            	left_child = rel_leaf_node_addr;
-            	rel_leaf_node_addr++;
-            	debug_leaf_counter++;
+                left_child = rel_leaf_node_addr;
+                rel_leaf_node_addr++;
+                debug_leaf_counter++;
             } else {
-            	left_child = rel_int_node_addr;
-            	rel_int_node_addr++;
-            	debug_int_counter++;
+                left_child = rel_int_node_addr;
+                rel_int_node_addr++;
+                debug_int_counter++;
             }
             if (count-n_lo == 1) {
-            	right_child = rel_leaf_node_addr;
-            	rel_leaf_node_addr++;
-            	debug_leaf_counter++;
+                right_child = rel_leaf_node_addr;
+                rel_leaf_node_addr++;
+                debug_leaf_counter++;
             } else {
-            	right_child = rel_int_node_addr;
-            	rel_int_node_addr++;
-            	debug_int_counter++;
+                right_child = rel_int_node_addr;
+                rel_int_node_addr++;
+                debug_int_counter++;
             }
             kdTree_ptr left_child_ptr = make_pointer<kdTree_type>(heap, (uint)left_child);
             kdTree_ptr right_child_ptr = make_pointer<kdTree_type>(heap, (uint)right_child);
@@ -377,8 +377,8 @@ void dot_product_tb(data_type_ext p1,data_type_ext p2, coord_type_ext *r)
 // problem: this requires post-order traversal
 void update_sums(node_pointer root, data_type* points)
 {
-	// re-init stack
-	uint dummy_pointer;
+    // re-init stack
+    uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
 
     uint counter = 1;
@@ -396,18 +396,18 @@ void update_sums(node_pointer root, data_type* points)
         kdTree_ptr curr_ptr = make_pointer<kdTree_type>(heap, (uint)curr);
 
         if (prev != NULL_PTR)
-        	prev_ptr = make_pointer<kdTree_type>(heap, (uint)prev);
+            prev_ptr = make_pointer<kdTree_type>(heap, (uint)prev);
 
         //is prev parent of curr?
         if ( (prev == NULL_PTR) || (prev_ptr->left == curr) || (prev_ptr->right == curr)) {
             if (curr_ptr->left != NULL_PTR) {
-            	stack_length = push_node(curr_ptr->left,&bt_stack_pointer, bt_stack_array);
+                stack_length = push_node(curr_ptr->left,&bt_stack_pointer, bt_stack_array);
             } else if (curr_ptr->right != NULL_PTR) {
-            	stack_length = push_node(curr_ptr->right,&bt_stack_pointer, bt_stack_array);
+                stack_length = push_node(curr_ptr->right,&bt_stack_pointer, bt_stack_array);
             }
         } else if (curr_ptr->left == prev) {
             if (curr_ptr->right != NULL_PTR) {
-            	stack_length = push_node(curr_ptr->right, &bt_stack_pointer, bt_stack_array);
+                stack_length = push_node(curr_ptr->right, &bt_stack_pointer, bt_stack_array);
             }
         } else {
             // remove curr from stack (could be a dummy read as well)
@@ -433,8 +433,8 @@ void update_sums(node_pointer root, data_type* points)
                 tmp_sum_sq = rc_ptr->sum_sq;
             } else {
                 for (uint d=0; d<D; d++) {
-                	coord_type_ext tmp = get_coord_type_vector_ext_item(lc_ptr->wgtCent.value,d) + get_coord_type_vector_ext_item(rc_ptr->wgtCent.value,d);
-                	set_coord_type_vector_ext_item(&tmp_wgtCent.value,tmp,d);
+                    coord_type_ext tmp = get_coord_type_vector_ext_item(lc_ptr->wgtCent.value,d) + get_coord_type_vector_ext_item(rc_ptr->wgtCent.value,d);
+                    set_coord_type_vector_ext_item(&tmp_wgtCent.value,tmp,d);
                 }
                 tmp_sum_sq = lc_ptr->sum_sq + rc_ptr->sum_sq;
             }
@@ -453,8 +453,8 @@ void update_sums(node_pointer root, data_type* points)
 // traverse the tree in pre-order and scale the sum_sq-field of each tree node
 void scale_sums(node_pointer root)
 {
-	// re-init stack
-	uint dummy_pointer;
+    // re-init stack
+    uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
 
     uint stack_length = push_node(root, &bt_stack_pointer, bt_stack_array);
@@ -520,8 +520,8 @@ void make_tree_data_file_name(char *result, uint n, uint k, uint d, double std_d
 void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer root, uint offset, kdTree_ptr image, node_pointer *image_addr)
 {
 
-	// re-init stack
-	uint dummy_pointer;
+    // re-init stack
+    uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
 
     uint stack_length = push_node(root, &bt_stack_pointer, bt_stack_array);
@@ -529,15 +529,15 @@ void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer 
 
     FILE *fp;
 
-	if (write2file) {
+    if (write2file) {
 
-	    char filename[256];
-		make_tree_data_file_name(filename,n,k,D,std_dev);
-		if (offset == 0)
-			fp = fopen(filename, "w");
-		else
-			fp = fopen(filename, "a");
-	}
+        char filename[256];
+        make_tree_data_file_name(filename,n,k,D,std_dev);
+        if (offset == 0)
+            fp = fopen(filename, "w");
+        else
+            fp = fopen(filename, "a");
+    }
 
     while (stack_length != 0) {
 
@@ -550,7 +550,7 @@ void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer 
         image[counter] = *u_ptr;
 
         if (write2file) {
-        	write_tree_node_to_file(*u_ptr, u, fp);
+            write_tree_node_to_file(*u_ptr, u, fp);
         }
 
         counter++;
@@ -566,12 +566,12 @@ void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer 
         }
     }
 
-	//readout_heapimage<node_pointer,kdTree_type>(heap, image, heapsize);
+    //readout_heapimage<node_pointer,kdTree_type>(heap, image, heapsize);
 
-	if (write2file) {
+    if (write2file) {
 
-		fclose(fp);
-	}
+        fclose(fp);
+    }
 
 }
 
