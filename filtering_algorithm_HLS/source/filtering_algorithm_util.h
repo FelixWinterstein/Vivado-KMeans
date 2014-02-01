@@ -9,7 +9,7 @@
 **********************************************************************/
 
 #ifndef FILTERING_ALGORITHM_UTIL_H
-#define	FILTERING_ALGORITHM_UTIL_H
+#define FILTERING_ALGORITHM_UTIL_H
 
 #include <math.h>
 #include "filtering_algorithm_top.h"
@@ -32,4 +32,4 @@ void compute_distance(data_type_ext p1, data_type_ext p2, coord_type_ext *dist);
 void tooFar_fi(data_type closest_cand, data_type cand, data_type bnd_lo, data_type bnd_hi, bool *too_far);
 
 
-#endif	/* FILTERING_ALGORITHM_UTIL_H */
+#endif  /* FILTERING_ALGORITHM_UTIL_H */

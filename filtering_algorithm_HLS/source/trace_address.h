@@ -10,7 +10,7 @@
 
 
 #ifndef TRACE_ADDRESS_H
-#define	TRACE_ADDRESS_H
+#define TRACE_ADDRESS_H
 
 #include "filtering_algorithm_top.h"
 

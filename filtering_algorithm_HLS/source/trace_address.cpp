@@ -14,23 +14,23 @@
 // mark an address as written, read, or read for the second time
 void trace_address(centre_list_pointer address, bool write, bool *rdy_for_deletion, bool *trace_buffer)
 {
-	#pragma AP latency max=1
-	#pragma AP inline
+    #pragma AP latency max=1
+    #pragma AP inline
 
-	bool tmp_val = trace_buffer[address];
+    bool tmp_val = trace_buffer[address];
 
-	if (write == true) {
-		trace_buffer[address] = true;
-	} else {
-		if (address != 0) {
-			trace_buffer[address] = false;
-		}
-	}
+    if (write == true) {
+        trace_buffer[address] = true;
+    } else {
+        if (address != 0) {
+            trace_buffer[address] = false;
+        }
+    }
 
-	if ( (write == false) && (tmp_val == false) ) {
-		*rdy_for_deletion = true;
-	} else {
-		*rdy_for_deletion = false;
-	}
+    if ( (write == false) && (tmp_val == false) ) {
+        *rdy_for_deletion = true;
+    } else {
+        *rdy_for_deletion = false;
+    }
 
 }

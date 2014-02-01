@@ -10,7 +10,7 @@
 
 
 #ifndef STACK_H
-#define	STACK_H
+#define STACK_H
 
 #include "filtering_algorithm_top.h"
 //#include "filtering_algorithm_top_v2.h"
@@ -22,9 +22,9 @@ typedef node_pointer stack_record;
 
 // centre stack
 struct cstack_record_type {
-	centre_list_pointer list;
-	centre_index_type k;
-	cstack_record_type& operator=(const cstack_record_type& a);
+    centre_list_pointer list;
+    centre_index_type k;
+    cstack_record_type& operator=(const cstack_record_type& a);
 };
 
 
