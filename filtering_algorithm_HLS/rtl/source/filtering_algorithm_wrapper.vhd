@@ -1,20 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: ESA
--- Engineer: Felix Winterstein
+-- Felix Winterstein, Imperial College London
 -- 
--- Create Date: 30.04.2013 10:24:46
--- Design Name: 
--- Module Name: filtering_algorithm_wrapper - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- filtering_algorithm_wrapper - Behavioral
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision 1.01
+-- Additional Comments: distributed under a BSD license, see LICENSE.txt
 -- 
 ----------------------------------------------------------------------------------
 

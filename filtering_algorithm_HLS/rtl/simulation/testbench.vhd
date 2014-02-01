@@ -1,7 +1,13 @@
---------------------------------------------------------------------------------
--- Company: ESA
--- Engineer: Felix Winterstein
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+-- Felix Winterstein, Imperial College London
+-- 
+-- testbench - behavior
+-- 
+-- Revision 1.01
+-- Additional Comments: distributed under a BSD license, see LICENSE.txt
+-- 
+----------------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.all;

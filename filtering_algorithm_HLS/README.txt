@@ -12,7 +12,7 @@ The code provided in this folder is a C-based HLS implementation of 'the Filteri
 F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,”
 in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365.
 
-The C source files are provided here without project files, but they contain HLS directives specfic to Xilinx Vivado HLS (Vivado HLS 2012.2).
+The C source files are provided here without project files, but they contain HLS directives specific to Xilinx Vivado HLS (Vivado HLS 2012.2).
 If you want to create a Vivado HLS project using these sources you may find the following instructions helpful:
 
 1) Launch Vivado HLS and create a new project.
@@ -35,13 +35,13 @@ A VHDL testbench is provided in 'rtl/simulation/testbench.vhd' which can be used
 6) Add the constraint file in 'rtl/constraints/'.
 7) Select the same device as for HLS.
 8) Add 'simulation/testbench.vhd' as simulation source and set 'testbench' as top level entity for simulation.
-9) Make sure that, when the parallelsim degree in 'source/filtering_algorithm_top.h' was changed, you run the C simulation once before lauching the RTL simulation.
+9) Make sure that, when the parallelsim degree in 'source/filtering_algorithm_top.h' was changed, you run the C simulation once before launching the RTL simulation.
    This is because the C test bench generates a tree data file ('simulation/tree*.mat') which is read by the RTL test bench.
 
 I used Modelsim for RTL simulation, I haven't tested the testbench with other simulators.
-The 'simulation' folder contains several files with input data (*.mat) that are read by the testbench (the same files as for the C simulation).
+The testbench in 'rtl/simulation' uses the same *.mat-input files as the C simulation.
 Before running the simulation, modify line 27 and 18 of 'testbench.vhd' according to the input files you want to use.
 The file name indicates the clustering parameters N (data point set), K (clusters), D (dimensionality), and s (standard deviation sigma). 
 Please refer to the paper above for information about the meaning of these parameters. The constants 'MY_N' (line 16) and 'MY_K' (line 17) must be adapted according to the input files.
-Run the *.do-file 'simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
+Run the *.do-file 'rtl/simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
 

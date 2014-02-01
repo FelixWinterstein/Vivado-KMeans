@@ -36,16 +36,8 @@ add wave -noupdate /testbench/uut/centre_positions_1_value_v_u/ce0
 add wave -noupdate -radix unsigned /testbench/uut/centre_positions_1_value_v_u/address0
 add wave -noupdate /testbench/uut/centre_positions_2_value_v_u/ce0
 add wave -noupdate -radix unsigned /testbench/uut/centre_positions_2_value_v_u/address0
-add wave -noupdate /testbench/uut/grp_lloyds_fu_465/centre_buffer_3_u/ce0
-add wave -noupdate -radix unsigned /testbench/uut/grp_lloyds_fu_465/centre_buffer_3_u/address0
-add wave -noupdate /testbench/uut/grp_lloyds_fu_465/centre_buffer_0_u/ce0
-add wave -noupdate -radix unsigned /testbench/uut/grp_lloyds_fu_465/centre_buffer_0_u/address0
-add wave -noupdate /testbench/uut/grp_lloyds_fu_465/centre_buffer_1_u/ce0
-add wave -noupdate -radix unsigned /testbench/uut/grp_lloyds_fu_465/centre_buffer_1_u/address0
-add wave -noupdate /testbench/uut/grp_lloyds_fu_465/centre_buffer_2_u/ce0
-add wave -noupdate -radix unsigned /testbench/uut/grp_lloyds_fu_465/centre_buffer_2_u/address0
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {193726805 ps} 0}
+WaveRestoreCursors {{Cursor 1} {19650417 ps} 0}
 configure wave -namecolwidth 324
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -60,4 +52,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {193658441 ps} {195227305 ps}
+WaveRestoreZoom {19610973 ps} {19709027 ps}

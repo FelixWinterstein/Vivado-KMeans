@@ -31,10 +31,10 @@ ARCHITECTURE behavior OF testbench IS
     constant NODE_POINTER_BITWIDTH : integer := 15;
     
     -- input data
-    file my_input_node : TEXT open READ_MODE is "../../simulation/data_points_N128_K4_D3_s0.75.mat";
-    file my_input_cntr : TEXT open READ_MODE is "../../simulation/initial_centres_N128_K4_D3_s0.75_1.mat";
-    --file my_input_node : TEXT open READ_MODE is "../../simulation/data_points_N16384_K128_D3_s0.20.mat";
-    --file my_input_cntr : TEXT open READ_MODE is "../../simulation/initial_centres_N16384_K128_D3_s0.20_1.mat";     
+    file my_input_node : TEXT open READ_MODE is "../../../simulation/data_points_N128_K4_D3_s0.75.mat";
+    file my_input_cntr : TEXT open READ_MODE is "../../../simulation/initial_centres_N128_K4_D3_s0.75_1.mat";
+    --file my_input_node : TEXT open READ_MODE is "../../../simulation/data_points_N16384_K128_D3_s0.20.mat";
+    --file my_input_cntr : TEXT open READ_MODE is "../../../simulation/initial_centres_N16384_K128_D3_s0.20_1.mat";     
 
     -- Clock period definitions
     constant CLK_PERIOD : time := 10 ns;        
