@@ -13,4 +13,6 @@ In addition to C-based HLS designs, we include hand-written and -optimised VHDL 
 
 Probably the best way to understand what this is all about is to read my papers included in this repository.
 
+(c) Felix Winterstein, Imperial College London. The source code is distributed under a 3-clause BSD license (see LICENSE.txt).
+
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fdd004cf9c26b71e20a5809a77718c8c "githalytics.com")](http://githalytics.com/FelixWinterstein/Vivado-KMeans)
