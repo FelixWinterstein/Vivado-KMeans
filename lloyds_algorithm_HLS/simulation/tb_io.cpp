@@ -31,6 +31,7 @@ void make_clustering_centres_file_name(char *result, uint n, uint k, uint d, dou
 
 bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* index)
 {
+
     FILE *fp;
     char filename[256];
     make_data_points_file_name(filename,n,k,D,std_dev);
@@ -44,6 +45,7 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
 
     for (uint j=0; j<D; j++) {
         for (uint i=0;i<n;i++) {
+
             if (fgets(tmp,16,fp) == 0) {
                 fclose(fp);
                 return false;
@@ -54,6 +56,12 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
                 b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
                 set_coord_type_vector_item(&points[i].value, b, j);
             }
+
+        	/*
+            coord_type b;
+            b.VAL = 1; // assume coord_type==short int
+            set_coord_type_vector_item(&points[i].value, b, j);
+            */
         }
     }
 
@@ -69,6 +77,7 @@ bool read_data_points(uint n, uint k, double std_dev, data_type* points, uint* i
 
 bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_centre_positions, uint* centr_idx)
 {
+
     FILE *fp;
     char filename[256];
     make_initial_centres_file_name(filename,n,k,D,std_dev,FILE_INDEX);
@@ -81,6 +90,7 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
 
     for (uint j=0; j<D; j++) {
         for (uint i=0;i<k;i++) {
+
             if (fgets(tmp,16,fp) == 0) {
                 fclose(fp);
                 return false;
@@ -91,6 +101,11 @@ bool read_initial_centres(uint n, uint k, double std_dev, data_type *initial_cen
                 b.VAL = (mytype)atoi(tmp); // assume coord_type==short int
                 set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
             }
+			/*
+            coord_type b;
+            b.VAL = 1; // assume coord_type==short int
+            set_coord_type_vector_item(&initial_centre_positions[i].value, b, j);
+            */
         }
     }
 

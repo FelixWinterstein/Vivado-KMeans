@@ -128,20 +128,22 @@ void filtering_algorithm_top(   volatile kdTree_type *node_data,
     // set the interface properties
     #pragma HLS interface ap_none register port=n
     #pragma HLS interface ap_none register port=k
-    #pragma HLS interface ap_fifo port=node_data depth=16
-    #pragma HLS interface ap_fifo port=node_address depth=16
-    #pragma HLS interface ap_fifo port=cntr_pos_init depth=16
-    #pragma HLS interface ap_fifo port=root depth=16
-    #pragma HLS interface ap_fifo port=distortion_out depth=16
-    #pragma HLS interface ap_fifo port=clusters_out depth=16
+    #pragma HLS interface ap_fifo port=node_data depth=256
+    #pragma HLS interface ap_fifo port=node_address depth=256
+    #pragma HLS interface ap_fifo port=cntr_pos_init depth=256
+    #pragma HLS interface ap_fifo port=root depth=256
+    #pragma HLS interface ap_fifo port=distortion_out depth=256
+    #pragma HLS interface ap_fifo port=clusters_out depth=256
 
     // we have P roots for P sub-trees
     node_pointer root_array[P];
 
     // pack all items of a struct into a single data word
     #pragma HLS data_pack variable=node_data
+    /*
     #pragma HLS data_pack variable=cntr_pos_init
     #pragma HLS data_pack variable=clusters_out
+    */
     #pragma HLS data_pack variable=tree_node_int_memory
     #pragma HLS data_pack variable=tree_node_leaf_memory
     //#pragma HLS data_pack variable=centre_heap
@@ -188,17 +190,17 @@ void filtering_algorithm_top(   volatile kdTree_type *node_data,
             #ifndef PARALLELISE
                 data_type tmp_pos;
                 if (l==0) {
-                    tmp_pos = cntr_pos_init[i];
+                    tmp_pos.value = cntr_pos_init[i].value;
                 } else {
-                    tmp_pos = new_centre_positions[i];
+                    tmp_pos.value = new_centre_positions[i].value;
                 }
                 centre_positions[i] = tmp_pos;
             #else
                 data_type tmp_pos;
                 if (l==0) {
-                    tmp_pos = cntr_pos_init[i];
+                    tmp_pos.value = cntr_pos_init[i].value;
                 } else {
-                    tmp_pos = new_centre_positions[i];
+                    tmp_pos.value = new_centre_positions[i].value;
                 }
                 for (uint p=0; p<P; p++) {
                     #pragma HLS unroll
@@ -962,20 +964,23 @@ void filtering_algorithm_top(   volatile kdTree_type *node_data,
                                 volatile coord_type_ext *distortion_out,
                                 volatile data_type *clusters_out)
 {
+
     // set the interface properties
     #pragma HLS interface ap_none register port=n
     #pragma HLS interface ap_none register port=k
-    #pragma HLS interface ap_fifo port=node_data depth=16
-    #pragma HLS interface ap_fifo port=node_address depth=16
-    #pragma HLS interface ap_fifo port=cntr_pos_init depth=16
-    #pragma HLS interface ap_fifo port=root depth=16
-    #pragma HLS interface ap_fifo port=distortion_out depth=16
-    #pragma HLS interface ap_fifo port=clusters_out depth=16
+    #pragma HLS interface ap_fifo port=node_data depth=256
+    #pragma HLS interface ap_fifo port=node_address depth=256
+    #pragma HLS interface ap_fifo port=cntr_pos_init depth=256
+    #pragma HLS interface ap_fifo port=root depth=256
+    #pragma HLS interface ap_fifo port=distortion_out depth=256
+    #pragma HLS interface ap_fifo port=clusters_out depth=256
 
     // pack all items of a struct into a single data word
     #pragma HLS data_pack variable=node_data // recursively pack struct kdTree_type
-    #pragma HLS data_pack variable=cntr_pos_init // pack struct data_type
-    #pragma HLS data_pack variable=clusters_out // pack struct data_type
+	/*
+    #pragma HLS data_pack variable=cntr_pos_init
+    #pragma HLS data_pack variable=clusters_out
+    */
     #pragma HLS data_pack variable=tree_node_int_memory
     #pragma HLS data_pack variable=tree_node_leaf_memory
 
@@ -1012,7 +1017,7 @@ void filtering_algorithm_top(   volatile kdTree_type *node_data,
         } else {
             for (centre_index_type i=0; i<=k; i++) {
                 #pragma HLS pipeline II=1
-                centre_positions[i] = new_centre_positions[i];
+                centre_positions[i].value = new_centre_positions[i].value;
                 if (i == k) {
                     break;
                 }
