@@ -15,14 +15,7 @@
 #include <math.h>
 #include "build_kdTree.h"
 
-// global array for the tree (keep heap local to this file)
-kdTree_type heap[HEAP_SIZE];
-node_pointer freelist[HEAP_SIZE];
-node_pointer next_free_location;
 
-//stack
-stack_record bt_stack_array[N]; //STACK_SIZE=N
-uint bt_stack_pointer;
 
 #define mytype short int
 
@@ -277,14 +270,21 @@ void setup_tree_node(data_type* points, uint *idx, uint n, data_type bnd_lo, dat
 
 
 // build up a kd-tree from a set of data points
-node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo, data_type *bnd_hi, node_pointer root_offset)
+node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo, data_type *bnd_hi, node_pointer root_offset, kdTree_type *heap)
 {
     uint debug_counter = 0;
     uint debug_leaf_counter = 0;
     uint debug_int_counter = 0;
 
+    //define stack data structure
+    stack_record bt_stack_array[N]; //STACK_SIZE=N
+    uint bt_stack_pointer;
+
     uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
+
+    //node_pointer freelist[HEAP_SIZE];
+    //node_pointer next_free_location;
 
     //init_allocator<node_pointer>(freelist, &next_free_location, HEAP_SIZE-1);
     node_pointer rel_int_node_addr  = (0 & ~(1<<(NODE_POINTER_BITWIDTH-1))) + root_offset;
@@ -371,8 +371,8 @@ node_pointer buildkdTree(data_type* points, uint *idx, uint n, data_type *bnd_lo
 
     }
 
-    update_sums(root, points);
-    scale_sums(root);
+    update_sums(root, points, heap);
+    scale_sums(root,heap);
 
     return root;
 }
@@ -390,8 +390,12 @@ void dot_product_tb(data_type_ext p1,data_type_ext p2, coord_type_ext *r)
 
 // updates the wgtCent and sum_sq fields of every node
 // problem: this requires post-order traversal
-void update_sums(node_pointer root, data_type* points)
+void update_sums(node_pointer root, data_type* points, kdTree_type *heap)
 {
+    //define stack data structure
+    stack_record bt_stack_array[N]; //STACK_SIZE=N
+    uint bt_stack_pointer;
+
     // re-init stack
     uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
@@ -466,8 +470,12 @@ void update_sums(node_pointer root, data_type* points)
 
 
 // traverse the tree in pre-order and scale the sum_sq-field of each tree node
-void scale_sums(node_pointer root)
+void scale_sums(node_pointer root, kdTree_type *heap)
 {
+    //define stack data structure
+    stack_record bt_stack_array[N]; //STACK_SIZE=N
+    uint bt_stack_pointer;
+
     // re-init stack
     uint dummy_pointer;
     init_stack(&bt_stack_pointer, &dummy_pointer);
@@ -532,8 +540,11 @@ void make_tree_data_file_name(char *result, uint n, uint k, uint d, double std_d
 
 
 // traverse the kd-tree in pre-order and write the tree node data to a file
-void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer root, uint offset, kdTree_ptr image, node_pointer *image_addr)
+void readout_tree(bool write2file, uint n, uint k, double std_dev, node_pointer root, kdTree_type *heap, uint offset, kdTree_ptr image, node_pointer *image_addr)
 {
+    //define stack data structure
+    stack_record bt_stack_array[N]; //STACK_SIZE=N
+    uint bt_stack_pointer;
 
     // re-init stack
     uint dummy_pointer;

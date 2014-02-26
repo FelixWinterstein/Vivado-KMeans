@@ -22,8 +22,8 @@ cstack_record_type& cstack_record_type::operator=(const cstack_record_type& a)
 void init_stack(uint *stack_pointer, uint *cstack_pointer)
 {
     #pragma HLS inline
-    stack_pointer = 0;
-    cstack_pointer = 0;
+    *stack_pointer = 0;
+    *cstack_pointer = 0;
 }
 
 // push pointer to tree node pointer onto stack
