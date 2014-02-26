@@ -110,8 +110,13 @@ int main()
     data_type clusters_out[K];
     coord_type_ext distortion_out[K];
 
+    // FIXME: get automatic co-simulation working
+
     /*
-    for (uint i = 0; i<2*n-1; i++) {
+    for (uint i=0; i<P; i++) {
+    	root[i] = 0;
+    }
+    for (uint i=0; i<2*n-1; i++) {
     	tree_image[i].bnd_hi = bnd_hi;
     	tree_image[i].bnd_lo = bnd_lo;
     	tree_image[i].count.VAL = i;
@@ -142,11 +147,11 @@ int main()
     delete data_points;
     delete initial_centre_positions;
     delete cntr_indices;
-    delete heap;
 
-
-    delete tree_image;
-    delete tree_image_addr;
+    // FIXME: find out why C simulation reports memory fault if I don't comment these lines out
+    //delete heap;
+    //delete tree_image;
+    //delete tree_image_addr;
 
 
     return 0;
