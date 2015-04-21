@@ -15,4 +15,4 @@ Probably the best way to understand what this is all about is to read my papers 
 
 (c) Felix Winterstein, Imperial College London. The source code is distributed under a 3-clause BSD license (see LICENSE.txt). If you use it, please cite _F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,” in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365_
 
-[![githalytics.com alpha](https://cruel-carlota.gopagoda.com/02665bc95a63c01869501214883d98d1 "githalytics.com")](http://githalytics.com/FelixWinterstein/Vivado-KMeans)
+[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/readme)](https://github.com/igrigorik/ga-beacon)
