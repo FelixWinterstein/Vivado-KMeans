@@ -1,12 +1,12 @@
-----------------------------------------------------------------------------------
--- Felix Winterstein, Imperial College London
--- 
--- README.txt
--- 
--- Revision 1.01
--- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
--- 
-----------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------
+    -- Felix Winterstein, Imperial College London
+    -- 
+    -- README.txt
+    -- 
+    -- Revision 1.01
+    -- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
+    -- 
+    ----------------------------------------------------------------------------------
 
 The code provided in this folder is a C-based HLS implementation of 'Lloyd`s Algorithm' for K-Means Clustering and is part of a case study described in the paper:
 F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,”
@@ -41,4 +41,6 @@ Before running the simulation, modify line 27 and 18 of 'testbench.vhd' accordin
 The file name indicates the clustering parameters N (data point set), K (clusters), D (dimensionality), and s (standard deviation sigma). 
 Please refer to the paper above for information about the meaning of these parameters. The constants 'MY_N' (line 16) and 'MY_K' (line 17) must be adapted according to the input files.
 Run the *.do-file 'rtl/simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/lloyds_algorithm_HLS/readme?pixel)](https://github.com/igrigorik/ga-beacon)
 
