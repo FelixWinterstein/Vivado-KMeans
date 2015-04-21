@@ -1,12 +1,12 @@
-----------------------------------------------------------------------------------
--- Felix Winterstein, Imperial College London
--- 
--- README.txt
--- 
--- Revision 1.01
--- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
--- 
-----------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------
+    -- Felix Winterstein, Imperial College London
+    -- 
+    -- README.txt
+    -- 
+    -- Revision 1.01
+    -- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
+    -- 
+    ----------------------------------------------------------------------------------
 
 The HDL code provided in this folder is an implementation of the 'Filtering Algorithm' for K-Means Clustering and is part of a case study described in the paper:
 F. Winterstein, S. Bayliss, and G. Constantinides, “Fpga-based k-means clustering using tree-based data structures,”
@@ -35,3 +35,4 @@ Please refer to the paper above for information about the meaning of these param
 Run the *.do-file 'simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
 Currently, the testbench (unlike the synthesis files) can only handle a parallelism degree of PARALLEL_UNITS=1 (in 'source/vhdl/filtering_algorithm_pkg.vhd').
 
+[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/filtering_algorithm_RTL/readme?pixel)](https://github.com/igrigorik/ga-beacon)
