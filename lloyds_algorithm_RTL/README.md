@@ -1,12 +1,12 @@
-----------------------------------------------------------------------------------
--- Felix Winterstein, Imperial College London
--- 
--- README.txt
--- 
--- Revision 1.01
--- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
--- 
-----------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------
+    -- Felix Winterstein, Imperial College London
+    -- 
+    -- README.txt
+    -- 
+    -- Revision 1.01
+    -- Additional Comments: distributed under a 3-clause BSD license, see LICENSE.txt
+    -- 
+    ----------------------------------------------------------------------------------
 
 The HDL code provided in this folder is an implementation of 'Lloyd`s Algorithm' for K-Means Clustering and is part of a case study described in the paper:
 F. Winterstein, S. Bayliss, and G. Constantinides, “Fpga-based k-means clustering using tree-based data structures,”
@@ -34,3 +34,4 @@ The file name indicates the clustering parameters N (data point set), K (cluster
 Please refer to the paper above for information about the meaning of these parameters. The constants 'MY_N' (line 24) and 'MY_K' (line 25) must be adapted according to the input files.
 Run the *.do-file 'simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
 
+[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/lloyds_algorithm_RTL/readme?pixel)](https://github.com/igrigorik/ga-beacon)
