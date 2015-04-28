@@ -45,3 +45,4 @@ The file name indicates the clustering parameters N (data point set), K (cluster
 Please refer to the paper above for information about the meaning of these parameters. The constants 'MY_N' (line 16) and 'MY_K' (line 17) must be adapted according to the input files.
 Run the *.do-file 'rtl/simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
 
+[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/filtering_algorithm_HLS/readme?pixel)](https://github.com/igrigorik/ga-beacon)
