@@ -80,12 +80,12 @@ int main(int argc, char** argv)
     //write_data_set_info(tree_memory_lo_lo, tree_memory_lo_hi, tree_memory_hi_lo, tree_memory_hi_hi, fidx);
 
     // free allocated memory
-    delete data_points;
-    delete data_output;
-    delete centre_output;
-    delete tree_memory;
-    delete initial_centres;
-    delete centr_idx;       
+    delete[] data_points;
+    delete[] data_output;
+    delete[] centre_output;
+    delete[] tree_memory;
+    delete[] initial_centres;
+    delete[] centr_idx;       
 
     return (EXIT_SUCCESS);
 }
