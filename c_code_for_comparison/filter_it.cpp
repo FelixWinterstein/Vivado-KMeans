@@ -47,7 +47,7 @@ uint pop_node(stack_type *stack, uint sp, uint *u)
 uint cpush_node(cstack_type *cstack, uint sp, centre_set_ptr l, uint k, bool redundant, centre_set_ptr default_set, uint default_k)
 {
 
-    if (stack_counter > CENTRE_SET_HEAP_BOUND-2) {
+    if (stack_counter > STACK_BOUND-2) {
         cstack[sp].list = default_set;
         cstack[sp].k = default_k;
         cstack[sp].redundant = false;
@@ -153,6 +153,7 @@ void filter_it( uint root,
     uint cst = 0;
     stack_counter = 0;
     uint max_stack_counter = 0;
+    uint centre_set_counter = 0;
     
     //End of Initialisation
     
@@ -202,26 +203,32 @@ void filter_it( uint root,
         centre_set_ptr new_cntr_idxs;
         centre_set_type *new_cntr_idxs_ptr;
         
+        bool centre_set_bound_reached = centre_set_counter >= CENTRE_SET_HEAP_BOUND-2;
+
+        uint new_k=0; 
+
         // allocate a new list
-        #ifdef CUSTOM_DYN_ALLOC
-        new_cntr_idxs = malloc<uint>(freelist, &next_free_location);        
-        new_cntr_idxs_ptr = make_pointer(centre_set_heap, new_cntr_idxs);
-        #else
-        new_cntr_idxs = new centre_set_type;
-        new_cntr_idxs_ptr = new_cntr_idxs;
-        #endif
-        // and copy candidates that survive pruning into it
-        uint new_k=0;   
-                     
-        // candidate pruning   
-        for (uint i=0; i<tmp_k; i++) {
-            bool too_far;
-            tooFar_fi_short(z_star, tmp_centre_positions[i], tmp_u.bnd_lo_short, tmp_u.bnd_hi_short, &too_far);
-            if ( too_far==false ) {
-                new_cntr_idxs_ptr->idx[new_k] = tmp_cntr_idxs_ptr->idx[i];
-                new_k++;
-            }
-        }        
+        if (!centre_set_bound_reached ) {
+            #ifdef CUSTOM_DYN_ALLOC
+            new_cntr_idxs = malloc<uint>(freelist, &next_free_location);        
+            new_cntr_idxs_ptr = make_pointer(centre_set_heap, new_cntr_idxs);
+            #else
+            new_cntr_idxs = new centre_set_type;
+            new_cntr_idxs_ptr = new_cntr_idxs;
+            #endif
+            centre_set_counter++;       
+
+            // and copy candidates that survive pruning into it                            
+            // candidate pruning   
+            for (uint i=0; i<tmp_k; i++) {
+                bool too_far;
+                tooFar_fi_short(z_star, tmp_centre_positions[i], tmp_u.bnd_lo_short, tmp_u.bnd_hi_short, &too_far);
+                if ( too_far==false ) {
+                    new_cntr_idxs_ptr->idx[new_k] = tmp_cntr_idxs_ptr->idx[i];
+                    new_k++;
+                }
+            }  
+        }      
         
         // update sum_sq of centre
         //coord_type tmp1_1, tmp2_1;
@@ -264,11 +271,14 @@ void filter_it( uint root,
             centre_buffer[tmp_final_idx].count_short += tmp_u.count_short;
             centre_buffer[tmp_final_idx].sum_sq += tmp_sum_sq; 
             
-            #ifdef CUSTOM_DYN_ALLOC
-            free<uint>(freelist, &next_free_location, new_cntr_idxs);
-            #else
-            delete new_cntr_idxs;
-            #endif                        
+            if (!centre_set_bound_reached ) {
+                #ifdef CUSTOM_DYN_ALLOC
+                free<uint>(freelist, &next_free_location, new_cntr_idxs);
+                #else
+                delete new_cntr_idxs;
+                #endif  
+                centre_set_counter--;   
+            }                   
             
             if (last_run == true) {    
                 //printf("%d: %d\n",tmp_u.pointAddr,tmp_u.sum_sq);
@@ -284,8 +294,13 @@ void filter_it( uint root,
             st = push_node(stack,st,left_child);
 
             // push centre lists for both children onto stack 
-            cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,true, cntr_idxs,k);
-            cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,false, cntr_idxs,k);
+            if (!centre_set_bound_reached) {
+                cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,true, cntr_idxs,k);
+                cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,false, cntr_idxs,k);
+            } else {
+                cst = cpush_node(cstack,cst,cntr_idxs,k,true, cntr_idxs,k);
+                cst = cpush_node(cstack,cst,cntr_idxs,k,false, cntr_idxs,k);
+            }
         }
         
         // delete if centre set was used twice
@@ -295,6 +310,7 @@ void filter_it( uint root,
             #else
             delete tmp_cntr_idxs;
             #endif
+            centre_set_counter--;
         }
         
         

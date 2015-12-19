@@ -26,6 +26,7 @@ extern "C" {
 #define L 30   // max number of iterations    
 
 #define CENTRE_SET_HEAP_BOUND 256
+#define STACK_BOUND 1024
     
 #define FRACTIONAL_BITS 6
 #define INTEGER_BITS 12
