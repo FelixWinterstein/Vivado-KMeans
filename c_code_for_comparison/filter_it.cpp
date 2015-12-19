@@ -132,6 +132,7 @@ void filter_it( uint root,
     }    
 
     uint visited_nodes = 0;
+    uint node_centre_pairs = 0;
     
     centre_set_ptr cntr_idxs;
     centre_set_type *cntr_idxs_ptr;
@@ -318,11 +319,12 @@ void filter_it( uint root,
             max_stack_counter = stack_counter;
         
         visited_nodes++;
+        node_centre_pairs += tmp_k;
         
         
     }
     #ifdef VERBOSE
-    printf("Visited nodes: %d\n",visited_nodes);
+    printf("Visited nodes: %d, node-centre pairs: %d\n",visited_nodes,node_centre_pairs);
     #endif
     
     for(uint i=0; i<k; i++) {
