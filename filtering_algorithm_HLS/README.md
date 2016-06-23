@@ -9,8 +9,8 @@
     ----------------------------------------------------------------------------------
 
 The code provided in this folder is a C-based HLS implementation of 'the Filtering Algorithm' for K-Means Clustering and is part of a case study described in the paper:
-F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,”
-in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365.
+_F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,”
+in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365_.
 
 The C source files are provided here without project files, but they contain HLS directives specific to Xilinx Vivado HLS (Vivado HLS 2012.2).
 If you want to create a Vivado HLS project using these sources you may find the following instructions helpful:
@@ -27,9 +27,9 @@ Synthesizing RTL code:
 A VHDL testbench is provided in 'rtl/simulation/testbench.vhd' which can be used to run an RTL simulation of the generated VHDL code:
 
 1. Run synthesis in Vivado HLS
-2. Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<HLS project name>/<solution name>/impl'.
+2. Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '{HLS project name}/{solution name}/impl'.
 3. Change to the folder 'rtl/source' and run the linux shell script 'reload_source_files.sh'.
-   The script copies all *.vhd files from 'filtering_algorithm/solution1/impl/vhdl' into the folder 'rtl/source' (where 'filtering_algorithm/solution1' is '<HLS project name>/<solution name>').
+   The script copies all *.vhd files from 'filtering_algorithm/solution1/impl/vhdl' into the folder 'rtl/source' (where 'filtering_algorithm/solution1' is '{HLS project name}/{solution name}').
    It also generates a TCL-script 'update_fileset.tcl' in the same folder in order to load the *.vhd files into a Vivado RTL project.
 4. Launch Vivado (RTL flow) and create a new project.
 5. Add the HDL sources in 'rtl/source/'.
