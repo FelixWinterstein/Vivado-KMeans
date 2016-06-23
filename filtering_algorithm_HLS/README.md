@@ -25,6 +25,7 @@ If you want to create a Vivado HLS project using these sources you may find the 
 
 Synthesizing RTL code:
 A VHDL testbench is provided in 'rtl/simulation/testbench.vhd' which can be used to run an RTL simulation of the generated VHDL code:
+
 1. Run synthesis in Vivado HLS
 2. Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<HLS project name>/<solution name>/impl'.
 3. Change to the folder 'rtl/source' and run the linux shell script 'reload_source_files.sh'.
