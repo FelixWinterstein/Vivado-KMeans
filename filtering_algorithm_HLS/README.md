@@ -12,7 +12,7 @@ The code provided in this folder is a C-based HLS implementation of 'the Filteri
 _F. Winterstein, S. Bayliss, and G. Constantinides, “High-level synthesis of dynamic data structures: a case study using Vivado HLS,”
 in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365_.
 
-The C source files are provided here without project files, but they contain HLS directives specific to Xilinx Vivado HLS (Vivado HLS 2012.2).
+The C source files are provided here without project files, but they contain HLS directives specific to Xilinx Vivado HLS.
 If you want to create a Vivado HLS project using these sources you may find the following instructions helpful:
 
 1. Launch Vivado HLS and create a new project.
