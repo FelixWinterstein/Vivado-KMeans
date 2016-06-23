@@ -15,27 +15,27 @@ in Proc. Int. Conf. on Field Programmable Technology (FPT), 2013, pp. 362-365.
 The C source files are provided here without project files, but they contain HLS directives specific to Xilinx Vivado HLS (Vivado HLS 2012.2).
 If you want to create a Vivado HLS project using these sources you may find the following instructions helpful:
 
-1) Launch Vivado HLS and create a new project.
-2) Add the C sources in 'source/' and set 'filtering_algorithm_top' as top-level function.
-3) Add all files in 'simulation/' (*.cpp and *.mat) as test bench files.
-4) Select a device and clock period constaint.
-5) All design parameters are set in the file 'source/filtering_algorithm_top.h'.
+1. Launch Vivado HLS and create a new project.
+2. Add the C sources in 'source/' and set 'filtering_algorithm_top' as top-level function.
+3. Add all files in 'simulation/' (*.cpp and *.mat) as test bench files.
+4. Select a device and clock period constaint.
+5. All design parameters are set in the file 'source/filtering_algorithm_top.h'.
    NOTE: The main design file 'source/filtering_algorithm_top.cpp' contains two versions of the implementation. Please read the note at the top of the file.
-6) Run the C test bench 'filtering_algorithm_tb.cpp' to check whether everything is set up properly.
+6. Run the C test bench 'filtering_algorithm_tb.cpp' to check whether everything is set up properly.
 
 Synthesizing RTL code:
 A VHDL testbench is provided in 'rtl/simulation/testbench.vhd' which can be used to run an RTL simulation of the generated VHDL code:
-1) Run synthesis in Vivado HLS
-2) Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<HLS project name>/<solution name>/impl'.
-3) Change to the folder 'rtl/source' and run the linux shell script 'reload_source_files.sh'.
+1. Run synthesis in Vivado HLS
+2. Run 'Export RTL' and select 'IP-XACT' as format. This creates a folder '<HLS project name>/<solution name>/impl'.
+3. Change to the folder 'rtl/source' and run the linux shell script 'reload_source_files.sh'.
    The script copies all *.vhd files from 'filtering_algorithm/solution1/impl/vhdl' into the folder 'rtl/source' (where 'filtering_algorithm/solution1' is '<HLS project name>/<solution name>').
    It also generates a TCL-script 'update_fileset.tcl' in the same folder in order to load the *.vhd files into a Vivado RTL project.
-4) Launch Vivado (RTL flow) and create a new project.
-5) Add the HDL sources in 'rtl/source/'.
-6) Add the constraint file in 'rtl/constraints/'.
-7) Select the same device as for HLS.
-8) Add 'simulation/testbench.vhd' as simulation source and set 'testbench' as top level entity for simulation.
-9) Make sure that, when the parallelsim degree in 'source/filtering_algorithm_top.h' was changed, you run the C simulation once before launching the RTL simulation.
+4. Launch Vivado (RTL flow) and create a new project.
+5. Add the HDL sources in 'rtl/source/'.
+6. Add the constraint file in 'rtl/constraints/'.
+7. Select the same device as for HLS.
+8. Add 'simulation/testbench.vhd' as simulation source and set 'testbench' as top level entity for simulation.
+9. Make sure that, when the parallelsim degree in 'source/filtering_algorithm_top.h' was changed, you run the C simulation once before launching the RTL simulation.
    This is because the C test bench generates a tree data file ('simulation/tree*.mat') which is read by the RTL test bench.
 
 I used Modelsim for RTL simulation, I haven't tested the testbench with other simulators.
@@ -44,5 +44,3 @@ Before running the simulation, modify line 27 and 18 of 'testbench.vhd' accordin
 The file name indicates the clustering parameters N (data point set), K (clusters), D (dimensionality), and s (standard deviation sigma). 
 Please refer to the paper above for information about the meaning of these parameters. The constants 'MY_N' (line 16) and 'MY_K' (line 17) must be adapted according to the input files.
 Run the *.do-file 'rtl/simulation/rerun.do' to set up the basic parameters and waveforms for a Modelsim simulation.
-
-[![Analytics](https://ga-beacon.appspot.com/UA-62121621-1/FelixWinterstein/Vivado-KMeans/filtering_algorithm_HLS/readme?pixel)](https://github.com/igrigorik/ga-beacon)
