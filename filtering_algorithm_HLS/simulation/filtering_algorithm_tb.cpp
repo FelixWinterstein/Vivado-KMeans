@@ -143,15 +143,14 @@ int main()
     }
 
 
-    delete idx;
-    delete data_points;
-    delete initial_centre_positions;
-    delete cntr_indices;
+    delete[] idx;
+    delete[] data_points;
+    delete[] initial_centre_positions;
+    delete[] cntr_indices;
 
-    // FIXME: find out why C simulation reports memory fault if I don't comment these lines out
-    //delete heap;
-    //delete tree_image;
-    //delete tree_image_addr;
+    delete[] heap;
+    delete[] tree_image;
+    delete[] tree_image_addr;
 
 
     return 0;
