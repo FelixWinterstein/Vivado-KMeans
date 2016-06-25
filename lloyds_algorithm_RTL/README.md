@@ -22,7 +22,7 @@ If you want to create a Vivado project using these sources you may find the foll
 4. Add the constraint file in 'constraints/'.
 5. Select a device (the IP cores were generated for a Virtex 7 xc7vx485tffg1157-1 FPGA).
 6. In Vivado, run the TCL-script 'import_ip_cores.tcl' to include all IP cores in the design.
-7. You can regenerate all cores using the TCL-script 'regenerate_ip_cores.tcl'.
+7. You can regenerate all cores using the TCL-script 'regenerate_ip_cores.tcl' (it may be necessary to upgrade the IP cores first if the coregen version has changed).
 8. Add 'simulation/testbench.vhd' as simulation source and set 'testbench' as top level entity for simulation.
 9. All design parameters are set in the file 'source/vhdl/lloyds_algorithm_pkg.vhd'.
 
