@@ -346,13 +346,14 @@ void init_tree_node_memory(volatile kdTree_type *node_data, volatile node_pointe
         tmp_node = node_data[i];
 
         bool leaf_node = tmp_node_address.get_bit(NODE_POINTER_BITWIDTH-1);
+
         #ifdef PARALLELISE
-        ap_uint<8> bank_selector = tmp_node_address.range(NODE_POINTER_BITWIDTH-2,NODE_POINTER_BITWIDTH-2-ceil(log2(P))+1);
+        ap_uint<8> bank_selector = tmp_node_address.range(NODE_POINTER_BITWIDTH-2,NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P]+1);
         #else
         ap_uint<8> bank_selector = 0;
         #endif
         ap_uint<NODE_POINTER_BITWIDTH-1-0> tmp_node_address_short;
-        tmp_node_address_short = tmp_node_address.range(NODE_POINTER_BITWIDTH-2-ceil(log2(P)),0);
+        tmp_node_address_short = tmp_node_address.range(NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P],0);
 
         if (leaf_node == false) {
             #ifdef PARALLELISE
@@ -640,7 +641,7 @@ template<uint par>void filter (node_pointer root,
                 if (u.get_bit(NODE_POINTER_BITWIDTH-1) == false) {
 
                     ap_uint<NODE_POINTER_BITWIDTH-1-0> u_short;
-                    u_short = u.range(NODE_POINTER_BITWIDTH-2-uint(ceil(log2(P))),0);
+                    u_short = u.range(NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P],0);
                     #ifdef PARALLELISE
                     kdTree_type *u_ptr = make_pointer<kdTree_type>(tree_node_int_memory[par], (uint)u_short);
                     #else
@@ -650,7 +651,7 @@ template<uint par>void filter (node_pointer root,
                 } else {
 
                     ap_uint<NODE_POINTER_BITWIDTH-1-0> u_short;
-                    u_short = u.range(NODE_POINTER_BITWIDTH-2-uint(ceil(log2(P))),0);
+                    u_short = u.range(NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P],0);
                     #ifdef PARALLELISE
                     kdTree_leaf_type *u_leaf_ptr = make_pointer<kdTree_leaf_type>(tree_node_leaf_memory[par], (uint)u_short);
                     #else
@@ -819,7 +820,7 @@ template<uint par>void filter (node_pointer root,
             if (u.get_bit(NODE_POINTER_BITWIDTH-1) == false) {
 
                 ap_uint<NODE_POINTER_BITWIDTH-1-0> u_short;
-                u_short = u.range(NODE_POINTER_BITWIDTH-2-uint(ceil(log2(P))),0);
+                u_short = u.range(NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P],0);
                 #ifdef PARALLELISE
                 kdTree_type *u_ptr = make_pointer<kdTree_type>(tree_node_int_memory[par], (uint)u_short);
                 #else
@@ -829,7 +830,7 @@ template<uint par>void filter (node_pointer root,
             } else {
 
                 ap_uint<NODE_POINTER_BITWIDTH-1-0> u_short;
-                u_short = u.range(NODE_POINTER_BITWIDTH-2-uint(ceil(log2(P))),0);
+                u_short = u.range(NODE_POINTER_BITWIDTH-2-MYCEILLOG2[P],0);
                 #ifdef PARALLELISE
                 kdTree_leaf_type *u_leaf_ptr = make_pointer<kdTree_leaf_type>(tree_node_leaf_memory[par], (uint)u_short);
                 #else

@@ -64,6 +64,10 @@ typedef ap_int<MUL_INTEGER_BITS+MUL_FRACTIONAL_BITS> mul_input_type;
 // this should be always 1
 #define FILE_INDEX 1
 
+// define log2 look-up because of trouble with standard math log2 during synthesis (max 32)
+const int MYCEILLOG2[33] =  {00,00,01,02,02,03,03,03,03,04,04,04,04,04,04,04,04,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05};
+
+
 // data point types
 struct data_type {
     //coord_type value[D];
@@ -140,6 +144,7 @@ T Reg(T in) {
         return in;
 }
 #endif
+
 
 
 

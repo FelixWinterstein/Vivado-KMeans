@@ -200,11 +200,11 @@ coord_type_ext tree_adder(coord_type_ext *input_array)
 {
     #pragma HLS inline
 
-    for(uint j=0;j<ceil(log2(D));j++)
+    for(uint j=0;j<MYCEILLOG2[D];j++)
     {
         #pragma HLS unroll
         #pragma HLS dependence variable=input_array inter false
-        if (j<ceil(log2(D))-1) {
+        if (j<MYCEILLOG2[D]-1) {
             for(uint i = 0; i < uint(D/(1<<(j+1))); i++)
             {
                 #pragma HLS unroll
@@ -218,7 +218,7 @@ coord_type_ext tree_adder(coord_type_ext *input_array)
                 input_array[uint(D/(1<<(j+1)))] = input_array[uint(D/(1<<(j+1))-1)*2+2];
             }
         }
-        if (j== ceil(log2(D))-1) {
+        if (j== MYCEILLOG2[D]-1) {
             coord_type_ext tmp1 = input_array[0];
             coord_type_ext tmp2 = input_array[1];
             coord_type_ext tmp3 = tmp1+tmp2;
@@ -233,10 +233,10 @@ coord_type_ext tree_adder(coord_type_ext *input_array,const uint m)
 {
         #pragma HLS inline
 
-        for(uint j=0;j<ceil(log2(m));j++)
+        for(uint j=0;j<MYCEILLOG2[m];j++)
     {
                 #pragma HLS unroll
-                if (j<ceil(log2(m))-1) {
+                if (j<MYCEILLOG2[m]-1) {
                         for(uint i = 0; i < uint(m/(1<<(j+1))); i++)
                         {
                                 #pragma HLS unroll
@@ -250,7 +250,7 @@ coord_type_ext tree_adder(coord_type_ext *input_array,const uint m)
                                 input_array[uint(m/(1<<(j+1)))] = input_array[uint(m/(1<<(j+1))-1)*2+2];
                         }
                 }
-                if (j== ceil(log2(m))-1) {
+                if (j== MYCEILLOG2[m]-1) {
                         coord_type_ext tmp1 = input_array[0];
                         coord_type_ext tmp2 = input_array[1];
                         coord_type_ext tmp3 = tmp1+tmp2;
