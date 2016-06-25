@@ -27,7 +27,7 @@ entity filtering_algorithm_wrapper is
         ap_start : in std_logic;
         ap_done : out std_logic;
         ap_idle : out std_logic;
-        node_data_dout : in std_logic_vector (317 downto 0);
+        node_data_dout : in std_logic_vector (319 downto 0);
         node_data_empty_n : in std_logic;
         node_data_read : out std_logic;
         node_address_V_dout : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -59,7 +59,7 @@ architecture Behavioral of filtering_algorithm_wrapper is
             ap_start : IN STD_LOGIC;
             ap_done : OUT STD_LOGIC;
             ap_idle : OUT STD_LOGIC;
-            node_data_dout : IN STD_LOGIC_VECTOR (317 downto 0);
+            node_data_dout : IN STD_LOGIC_VECTOR (319 downto 0);
             node_data_empty_n : IN STD_LOGIC;
             node_data_read : OUT STD_LOGIC;
             node_address_V_dout : IN STD_LOGIC_VECTOR (15 downto 0);
@@ -89,7 +89,7 @@ architecture Behavioral of filtering_algorithm_wrapper is
     signal ap_done_reg : std_logic;
     signal ap_idle_tmp : std_logic;
     signal ap_idle_reg : std_logic;
-    signal node_data_dout_reg : std_logic_vector (317 downto 0);
+    signal node_data_dout_reg : std_logic_vector (319 downto 0);
     signal node_data_empty_n_reg : std_logic;
     signal node_data_read_tmp : std_logic;
     signal node_data_read_reg : std_logic;
