@@ -62,7 +62,7 @@ void clustering(uint n, uint k, centre_type *initial_centres, data_type_short *d
     struct timeval start, end;
     unsigned long long usecs;
     GETTIME(start); 
-        
+       
     
     // main clustering loop (runs L+1 times)
     for ( iteration = 0; iteration <= L; iteration++ ) {

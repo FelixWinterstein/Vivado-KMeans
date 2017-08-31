@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 {
     uint k = 128;
     uint n = 16384;  
-    const double std_dev = 0.00;
+    const double std_dev = 0.20;
     const uint fidx = 1;      
     
     // works for linux!
