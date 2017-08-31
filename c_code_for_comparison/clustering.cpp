@@ -113,6 +113,6 @@ void clustering(uint n, uint k, centre_type *initial_centres, data_type_short *d
     usecs = GETUSEC(end,start);
     t = clock() - t; 
         
-    printf("Filtering time (using GETTIME): %d us\n",usecs);
+    //printf("Filtering time (using GETTIME): %d us\n",usecs);
     
 }

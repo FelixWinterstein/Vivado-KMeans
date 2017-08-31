@@ -299,7 +299,7 @@ void filter_it( uint root,
                 cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,true, cntr_idxs,k);
                 cst = cpush_node(cstack,cst,new_cntr_idxs,new_k,false, cntr_idxs,k);
             } else {
-                cst = cpush_node(cstack,cst,cntr_idxs,k,true, cntr_idxs,k);
+                cst = cpush_node(cstack,cst,cntr_idxs,k,false, cntr_idxs,k);
                 cst = cpush_node(cstack,cst,cntr_idxs,k,false, cntr_idxs,k);
             }
         }
@@ -323,9 +323,6 @@ void filter_it( uint root,
         
         
     }
-    #ifdef VERBOSE
-    printf("Visited nodes: %d, node-centre pairs: %d\n",visited_nodes,node_centre_pairs);
-    #endif
     
     for(uint i=0; i<k; i++) {
         centres[i] = centre_buffer[i];

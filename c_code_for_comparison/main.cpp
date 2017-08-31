@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 {
     uint k = 128;
     uint n = 16384;  
-    const double std_dev = 0.20;
+    const double std_dev = 0.00;
     const uint fidx = 1;      
     
     // works for linux!
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
         printf("ERROR: getcwd failed\n");
         return EXIT_SUCCESS;  
     }
-    printf("Working directory is: %s\n",path);
+    //printf("Working directory is: %s\n",path);
 
     // allocate input arrays 
     data_type_short *data_points = new data_type_short[NMAX];            
@@ -76,6 +76,7 @@ int main(int argc, char** argv)
         printf("%d\n",centre_output[i].position_short.value[D-1]);
     }
     #endif
+    
     
     //write_data_set_info(tree_memory_lo_lo, tree_memory_lo_hi, tree_memory_hi_lo, tree_memory_hi_hi, fidx);
 
